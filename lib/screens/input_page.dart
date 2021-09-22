@@ -20,10 +20,11 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender selectedGender;
-  int height = 180;
-  int weight = 60;
-  int age = 20;
+  Gender _selectedGender;
+  int _height = 180;
+  int _weight = 60;
+  int _age = 20;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,13 +42,13 @@ class _InputPageState extends State<InputPage> {
                     onPress: () {
                       setState(
                         () {
-                          selectedGender = Gender.male;
+                          _selectedGender = Gender.male;
                         },
                       );
                     },
-                    colour: selectedGender == Gender.male
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
+                    colour: _selectedGender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
                     cardChild: CardContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
@@ -58,12 +59,12 @@ class _InputPageState extends State<InputPage> {
                   child: ReusebableCard(
                     onPress: () {
                       setState(() {
-                        selectedGender = Gender.female;
+                        _selectedGender = Gender.female;
                       });
                     },
-                    colour: selectedGender == Gender.female
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
+                    colour: _selectedGender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
                     cardChild: CardContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE',
@@ -75,13 +76,13 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusebableCard(
-              colour: kActiveCardColor,
+              colour: activeCardColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
                     'HEIGHT',
-                    style: kLabelTextStyle,
+                    style: labelTextStyle,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -89,12 +90,12 @@ class _InputPageState extends State<InputPage> {
                     textBaseline: TextBaseline.alphabetic,
                     children: <Widget>[
                       Text(
-                        height.toString(),
-                        style: kNumbertTextStyle,
+                        _height.toString(),
+                        style: numbertTextStyle,
                       ),
                       Text(
                         'cm',
-                        style: kLabelTextStyle,
+                        style: labelTextStyle,
                       )
                     ],
                   ),
@@ -110,13 +111,13 @@ class _InputPageState extends State<InputPage> {
                           RoundSliderOverlayShape(overlayRadius: 30.0),
                     ),
                     child: Slider(
-                      value: height.toDouble(),
+                      value: _height.toDouble(),
                       min: 120.0,
                       max: 220.0,
                       onChanged: (double newValue) {
                         setState(
                           () {
-                            height = newValue.round();
+                            _height = newValue.round();
                           },
                         );
                       },
@@ -131,17 +132,17 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusebableCard(
-                    colour: kActiveCardColor,
+                    colour: activeCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           'WEIGHT',
-                          style: kLabelTextStyle,
+                          style: labelTextStyle,
                         ),
                         Text(
-                          weight.toString(),
-                          style: kNumbertTextStyle,
+                          _weight.toString(),
+                          style: numbertTextStyle,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +151,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.minus,
                                 onPressed: () {
                                   setState(() {
-                                    weight--;
+                                    _weight--;
                                   });
                                 }),
                             SizedBox(
@@ -161,7 +162,7 @@ class _InputPageState extends State<InputPage> {
                               onPressed: () {
                                 setState(
                                   () {
-                                    weight++;
+                                    _weight++;
                                   },
                                 );
                               },
@@ -174,17 +175,17 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusebableCard(
-                    colour: kActiveCardColor,
+                    colour: activeCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           'AGE',
-                          style: kLabelTextStyle,
+                          style: labelTextStyle,
                         ),
                         Text(
-                          age.toString(),
-                          style: kNumbertTextStyle,
+                          _age.toString(),
+                          style: numbertTextStyle,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -193,7 +194,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.minus,
                                 onPressed: () {
                                   setState(() {
-                                    age--;
+                                    _age--;
                                   });
                                 }),
                             SizedBox(
@@ -204,7 +205,7 @@ class _InputPageState extends State<InputPage> {
                               onPressed: () {
                                 setState(
                                   () {
-                                    age++;
+                                    _age++;
                                   },
                                 );
                               },
@@ -222,8 +223,8 @@ class _InputPageState extends State<InputPage> {
             buttonTitle: "CALCULATE",
             onTap: () {
               CalculationBrain calc = CalculationBrain(
-                height: height,
-                weight: weight,
+                height: _height,
+                weight: _weight,
               );
 
               Navigator.push(

@@ -30,29 +30,29 @@ class ResultPage extends StatelessWidget {
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   'You result:',
-                  style: kTitleTextStyle,
+                  style: titleTextStyle,
                 ),
               ),
             ),
             Expanded(
               flex: 5,
               child: ReusebableCard(
-                colour: kActiveCardColor,
+                colour: activeCardColor,
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       resultText.toUpperCase(),
-                      style: kResultTextStyle,
+                      style: resultTextStyle,
                     ),
                     Text(
                       bmiResult,
-                      style: kBMITextStyle,
+                      style: bmiTextStyle,
                     ),
                     Text(
                       interpritation,
-                      style: kBodyTextStyle,
+                      style: bodyTextStyle,
                       textAlign: TextAlign.center,
                     )
                   ],
